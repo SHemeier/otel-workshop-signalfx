@@ -1,0 +1,27 @@
+receivers:
+  otlp:
+    endpoint: "0.0.0.0:55680"
+
+processors:
+  attributes:
+    actions:
+      - key: "environment"
+        value: "lazy"
+        action: insert
+  batch:
+  queued_retry:
+
+exporters:
+  logging:
+    loglevel: debug
+  sapm:
+    access_token: "${SIGNALFX_TOKEN}"
+    endpoint: "https://ingest.eu0.signalfx.com/v2/trace"
+
+service:
+  extensions: []
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [attributes]
+      exporters: [logging, sapm]

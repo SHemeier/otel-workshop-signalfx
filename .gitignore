@@ -1,0 +1,13 @@
+# IntelliJ IDEA
+.idea
+*.iml
+.editorconfig
+
+# Maven
+target
+
+# Gradle
+build
+.gradle
+local.properties
+out/
