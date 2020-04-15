@@ -11,6 +11,10 @@ steps can be found in `/src/main/java`. Have suggestions on how to improve this 
 * Be on the project root folder
 
 ## Make useful commands
+* Compiling Code
+  ```bash
+  make compile
+  ```
 * Run Redis Docker
   ```bash
   make run-redis
@@ -149,6 +153,8 @@ problem solving of the workshop.
 
 Your task is to instrument this application using [OpenTelemetry
 Java](https://github.com/open-telemetry/opentelemetry-java).
+
+If you get stuck, there is a reference implementation under `solutions`.
 
 ### 1. Add the relevant dependencies and repositories to `build.gradle`.
 
@@ -305,6 +311,7 @@ import io.grpc.Context;
 import io.opentelemetry.OpenTelemetry;
 import io.opentelemetry.context.Scope;
 import io.opentelemetry.trace.Span;
+import io.opentelemetry.trace.Tracer;
 
 
 public final class HttpClient {
@@ -351,6 +358,8 @@ public final class HttpClient {
   }
 }
 ```
+
+Ensure compilation is successful and restart the `loadgenerator` and `frontend` applications.
 
 ### 5. Instrument HTTP Server util library.
 
@@ -425,6 +434,9 @@ public final class HttpServer implements AutoCloseable {
 }
 ```
 
+Ensure compilation is successful and restart the `backend` and `frontend` applications.
+
+
 ### 6. Use instrumentation plugin for Jedis client.
 
 Here we will use a provided library for Jedis client. Usually for all the major client libraries
@@ -448,12 +460,17 @@ public final class BackEnd implements AutoCloseable {
   }
 }
 ```
+Ensure compilation is successful and restart the `backend` application.
 
 ## Problem Solving!
-Once the above instructions have been followed to instrument the application, there are three issues in the code base.
-Problem 1. Broken traces
-Problem 2. Error in application code
-Problem 3. Why is it so slow?
+Once the above instructions have been executed, there are three issues in the code base:
+
+1. Disconnected traces
+1. Error in application code
+1. High Latency
+
+Solution for these issues can be found under the `solutions` directory.
+
 
 
 ## Resources
