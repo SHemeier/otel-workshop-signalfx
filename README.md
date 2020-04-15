@@ -7,6 +7,7 @@ steps can be found in `/src/main/java`. Have suggestions on how to improve this 
 * Java 1.8.231
 * `make`
 * Docker
+* `git clone https://github.com/signalfx/otel-workshop-signalfx.git`
 * Be on the project root folder
 
 ## Make useful commands
