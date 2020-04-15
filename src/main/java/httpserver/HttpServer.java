@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public final class HttpServer implements AutoCloseable {
   private static final Logger logger = Logger.getLogger(HttpServer.class.getName());
-  // TODO: #4
+  // TODO: #5
 
   private final com.sun.net.httpserver.HttpServer httpServer;
 
@@ -53,7 +53,7 @@ public final class HttpServer implements AutoCloseable {
 
     @Override
     public void handle(HttpExchange httpExchange) {
-      // TODO: #4
+      // TODO: #5
       try {
         wrappedHandler.handle(httpExchange);
       } catch (IOException e) {

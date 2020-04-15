@@ -1,16 +1,22 @@
 receivers:
+  # This configures the OpenTelemetry Collector
+  #to receive traces using the OpenTelemetry Protocol format on port 55680.
   otlp:
     endpoint: "0.0.0.0:55680"
 
 processors:
+  # This configures adding a new key/value to all traces with key: environment and the specified value.
   attributes:
     actions:
       - key: "environment"
-        value: "lazy"
+        value: "<insert-your-name-here>"
         action: insert
-  batch:
-  queued_retry:
 
+
+# This Collector is configured to export traces in two formats.
+# 1. logging - this will log all of the traces received by the collector to the log file.
+# 2. sapm - this exports traces in the SAPM protocol format to the SignalFx backend.
+# Note. The `SIGNALFX_TOKEN` is configurable as an environment variable passed to the docker container.
 exporters:
   logging:
     loglevel: debug
@@ -20,6 +26,8 @@ exporters:
 
 service:
   extensions: []
+  # It is possible to have multiple pipelines with multiple receivers, processors and exporters.
+  # It is configured here.
   pipelines:
     traces:
       receivers: [otlp]
